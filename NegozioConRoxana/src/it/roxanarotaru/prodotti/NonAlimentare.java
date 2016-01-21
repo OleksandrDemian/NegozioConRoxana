@@ -4,8 +4,8 @@ public class NonAlimentare extends Prodotto {
 
 	String materiale;
 
-	public NonAlimentare(String codice, String descrizione, float prezzo, String materiale) {
-		super(codice, descrizione, prezzo);
+	public NonAlimentare(String nome, String codice, String descrizione, String prezzo, String materiale) {
+		super(nome, codice, descrizione, prezzo);
 		this.materiale = materiale;
 	}
 

@@ -1,15 +1,18 @@
 package it.roxanarotaru.prodotti;
 
 public class Prodotto implements Cloneable {
+	String nome;
 	String codice;
 	String descrizione;
 	float prezzo;
 
-	public Prodotto(String codice, String descrizione, float prezzo) {
+	public Prodotto(String nome, String codice, String descrizione, String prezzo) {
 		super();
+		this.nome = nome;
 		this.codice = codice;
 		this.descrizione = descrizione;
-		this.prezzo = prezzo;
+		this.prezzo = prezzoConv(prezzo);
+		System.out.println(this);
 	}
 
 	public String getCodice() {
@@ -54,6 +57,17 @@ public class Prodotto implements Cloneable {
 		} else {
 			return false;
 		}
+	}
+	
+	private float prezzoConv(String stringa){
+		float p = 0;
+			try{
+				p = Float.valueOf(stringa);
+			}
+			catch(NumberFormatException nE){
+				System.out.println("No!");
+			}
+		return p;
 	}
 
 	@Override
