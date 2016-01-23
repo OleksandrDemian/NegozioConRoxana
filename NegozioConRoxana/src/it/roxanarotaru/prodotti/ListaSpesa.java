@@ -6,19 +6,20 @@ public class ListaSpesa {
 	private int maxProdotti = 100;
 	private boolean tesseraFedelta;
 	
-	public ListaSpesa(boolean tesseraFedelta){
+	public ListaSpesa(){
 		numProdotti=0;
 		maxProdotti = 100;
 		this.tesseraFedelta = tesseraFedelta;
 		lista = new Prodotto[100];
 	}
 	
-	public void aggiungiProdotto(Prodotto P){
+	public void aggiungiProdotto(Prodotto p){
 		if(numProdotti < maxProdotti){
-			if(tesseraFedelta){
+			/*if(tesseraFedelta){
 				P.applicaSconto();
 				//System.out.println("Tessera fedeltà accettata");
-			} lista[numProdotti++] = P;
+			}*/ 
+			lista[numProdotti++] = p;
 		} else{
 			System.out.println("la lista e' piena");
 		}
@@ -37,10 +38,19 @@ public class ListaSpesa {
 		return totale;
 	}
 	
-	public void eliminaProdotto(int pos, Prodotto P){
+	public int Lunghezza(){
+		return numProdotti;
+	}
+	
+	public Prodotto getProdotto(int index){
+		return lista[index];
+	}
+	
+	public void eliminaProdotto(int pos){
 		for(int i=pos; i<numProdotti; i++){
-			lista[numProdotti--] = P;
+			lista[i] = lista[i+1];
 		}
+		numProdotti--;
 	}
 
 }

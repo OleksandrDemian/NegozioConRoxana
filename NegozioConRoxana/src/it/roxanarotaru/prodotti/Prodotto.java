@@ -5,6 +5,13 @@ public class Prodotto implements Cloneable {
 	String codice;
 	String descrizione;
 	float prezzo;
+	
+	public Prodotto(){
+		this.nome="Nullo";
+		this.codice = "123456";
+		this.descrizione = "Niente";
+		this.prezzo = 0.0f;
+	}
 
 	public Prodotto(String nome, String codice, String descrizione, String prezzo) {
 		super();
@@ -13,6 +20,14 @@ public class Prodotto implements Cloneable {
 		this.descrizione = descrizione;
 		this.prezzo = prezzoConv(prezzo);
 		System.out.println(this);
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getCodice() {
