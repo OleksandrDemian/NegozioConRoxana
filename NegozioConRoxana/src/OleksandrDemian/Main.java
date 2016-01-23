@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.DateTime;
 
 public class Main {
 	ListaSpesa negozio = new ListaSpesa();
@@ -108,6 +109,17 @@ public class Main {
 		type.setBounds(450, 168, 108, 21);
 		
 		tipo = new Combo(shell, SWT.NONE);
+		tipo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(tipo.getSelectionIndex()== 0){
+					type.setText("gg/mm/aaaa");
+				}
+				if(tipo.getSelectionIndex() == 1){
+					type.setText("Materiale");
+				}
+			}
+		});
 		tipo.setItems(new String[] {"Alimentari", "Non alimentari"});
 		tipo.setBounds(450, 139, 108, 15);
 		tipo.setText("Tipo prodotto");
@@ -118,14 +130,14 @@ public class Main {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Prodotto p = new Prodotto();
-				if(tipo.getSelectionIndex() == 0){
-					p = new Alimentare(txtNomeprodotto.getText(), txtCodiceABarre.getText(), txtDescrizione.getText(), txtPrezzo.getText(), type.getText());
-				}
-				if(tipo.getSelectionIndex() == 1){
-					p = new NonAlimentare(txtNomeprodotto.getText(), txtCodiceABarre.getText(), txtDescrizione.getText(), txtPrezzo.getText(), type.getText());
-				}
 				
 				if(p.getPrezzo() != 0){
+					if(tipo.getSelectionIndex() == 0){
+						p = new Alimentare(txtNomeprodotto.getText(), txtCodiceABarre.getText(), txtDescrizione.getText(), txtPrezzo.getText(), type.getText());
+					}
+					if(tipo.getSelectionIndex() == 1){
+						p = new NonAlimentare(txtNomeprodotto.getText(), txtCodiceABarre.getText(), txtDescrizione.getText(), txtPrezzo.getText(), type.getText());
+					}
 					negozio.aggiungiProdotto(p);
 					aggiornaNegozio();
 				}
@@ -157,8 +169,10 @@ public class Main {
 		eliminaNegozio.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				negozio.eliminaProdotto(negozioLista.getSelectionIndex());
-				aggiornaNegozio();
+				if(negozioLista.getSelectionIndex()!= -1){
+					negozio.eliminaProdotto(negozioLista.getSelectionIndex());
+					aggiornaNegozio();
+				}
 			}
 		});
 		eliminaNegozio.setBounds(10, 335, 172, 25);

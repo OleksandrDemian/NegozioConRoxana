@@ -47,5 +47,5 @@ public class Data {
 		int giorno = c.get(Calendar.DATE);
 		return giorno+"/"+mese+"/"+anno;
 	}
-
+	
 }
