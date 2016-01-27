@@ -4,12 +4,10 @@ public class ListaSpesa {
 	Prodotto[] lista;
 	private int numProdotti = 0;
 	private int maxProdotti = 100;
-	private boolean tesseraFedelta;
 	
 	public ListaSpesa(){
 		numProdotti=0;
 		maxProdotti = 100;
-		this.tesseraFedelta = tesseraFedelta;
 		lista = new Prodotto[100];
 	}
 	
@@ -30,9 +28,11 @@ public class ListaSpesa {
 		numProdotti = 0;
 	}
 	
-	public float calcolaSpesa(){
+	public float calcolaSpesa(boolean sconto){
 		float totale = 0;
 		for(int i=0; i<numProdotti; i++){
+			if(sconto)
+				lista[i].applicaSconto();
 			totale = totale + lista[i].getPrezzo();
 		}
 		return totale;

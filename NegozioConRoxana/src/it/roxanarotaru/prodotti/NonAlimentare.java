@@ -4,8 +4,8 @@ public class NonAlimentare extends Prodotto {
 
 	String materiale;
 
-	public NonAlimentare(String nome, String codice, String descrizione, String prezzo, String materiale) {
-		super(nome, codice, descrizione, prezzo);
+	public NonAlimentare(String nome, String codice, float prezzo, String materiale) {
+		super(nome, codice, prezzo);
 		this.materiale = materiale;
 	}
 
@@ -20,10 +20,14 @@ public class NonAlimentare extends Prodotto {
 	@Override
 	public void applicaSconto() {
 		// TODO Auto-generated method stub
-		if (materiale.equals("carta") || materiale.equals("vetro")) {
-			prezzo = prezzo *0.90f;
-		} else {
-			super.applicaSconto();
+		if(!scontato){
+			if (materiale.equals("carta") || materiale.equals("vetro")) {
+				prezzo = prezzo *0.90f;
+				System.out.println(this.nome + "Sconto");
+			} else {
+				super.applicaSconto();
+			}
+			scontato = true;
 		}
 	}
 }

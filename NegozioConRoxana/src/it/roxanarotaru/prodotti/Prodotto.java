@@ -3,23 +3,23 @@ package it.roxanarotaru.prodotti;
 public class Prodotto implements Cloneable {
 	String nome;
 	String codice;
-	String descrizione;
 	float prezzo;
+	protected boolean scontato;
 	
 	public Prodotto(){
 		this.nome="Nullo";
 		this.codice = "123456";
-		this.descrizione = "Niente";
 		this.prezzo = 0.0f;
+		scontato = false;
 	}
 
-	public Prodotto(String nome, String codice, String descrizione, String prezzo) {
+	public Prodotto(String nome, String codice, float prezzo) {
 		super();
 		this.nome = nome;
 		this.codice = codice;
-		this.descrizione = descrizione;
-		this.prezzo = prezzoConv(prezzo);
+		this.prezzo = prezzo;
 		System.out.println(this);
+		scontato = false;
 	}
 	
 	public String getNome() {
@@ -38,14 +38,6 @@ public class Prodotto implements Cloneable {
 		this.codice = codice;
 	}
 
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
 	public float getPrezzo() {
 		return prezzo;
 	}
@@ -55,34 +47,26 @@ public class Prodotto implements Cloneable {
 	}
 
 	public void applicaSconto() {
-		this.prezzo = this.prezzo * 0.95f;
+		if(!scontato){
+			this.prezzo = this.prezzo * 0.95f;
+			scontato = true;
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Cod: " + codice + " descrizione: " + descrizione + " prezzo:" + prezzo;
+		return "Cod: " + codice + " nome: " + nome + " prezzo:" + prezzo;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		// Sono uguali se sono uguali tutti i campi
 		Prodotto p = (Prodotto) obj;
-		if (p.getCodice().equals(codice) && p.getDescrizione().equals(descrizione) && p.getPrezzo() == prezzo) {
+		if (p.getCodice().equals(nome) && p.getNome().equals(nome) && p.getPrezzo() == prezzo) {
 			return true;
 		} else {
 			return false;
 		}
-	}
-	
-	private float prezzoConv(String stringa){
-		float p = 0;
-			try{
-				p = Float.valueOf(stringa);
-			}
-			catch(NumberFormatException nE){
-				System.out.println("No!");
-			}
-		return p;
 	}
 
 	@Override
