@@ -38,6 +38,7 @@ public class Main {
 	private Button eliminaNegozio;
 	private Button calcPrezzo;
 	private Button btnTesseraFedelta;
+	private Button btnCaricaprodotti;
 
 	/**
 	 * Launch the application.
@@ -72,7 +73,7 @@ public class Main {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(551, 421);
+		shell.setSize(551, 463);
 		shell.setText("SWT Application");
 		
 		negozioLista = new List(shell, SWT.BORDER);
@@ -192,7 +193,7 @@ public class Main {
 		calcPrezzo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MessageDialog.openError(shell, "Erorre", "Il prezzo è di: " + spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
+				MessageDialog.openInformation(shell, "Erorre", "Il prezzo è di: " + spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
 				//spesa.calcolaSpesa(btnTesseraFedelta.getSelection());
 			}
 		});
@@ -203,6 +204,26 @@ public class Main {
 		lblCreaProdotto.setAlignment(SWT.CENTER);
 		lblCreaProdotto.setBounds(417, 10, 108, 15);
 		lblCreaProdotto.setText("Crea prodotto");
+		
+		Button btnSalvaprodotti = new Button(shell, SWT.NONE);
+		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				SaveLoad.Save(negozio);
+			}
+		});
+		btnSalvaprodotti.setBounds(10, 366, 172, 25);
+		btnSalvaprodotti.setText("SalvaProdotti");
+		
+		btnCaricaprodotti = new Button(shell, SWT.NONE);
+		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				SaveLoad.Load();
+			}
+		});
+		btnCaricaprodotti.setBounds(10, 397, 172, 25);
+		btnCaricaprodotti.setText("CaricaProdotti");
 	}
 	
 	void aggiornaSpesa(){
