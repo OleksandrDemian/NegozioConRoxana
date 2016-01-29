@@ -18,7 +18,6 @@ public class Prodotto implements Cloneable {
 		this.nome = nome;
 		this.codice = codice;
 		this.prezzo = prezzo;
-		System.out.println(this);
 		scontato = false;
 	}
 	

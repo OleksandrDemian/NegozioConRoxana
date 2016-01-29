@@ -11,31 +11,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 
 import it.roxanarotaru.prodotti.ListaSpesa;
+import it.roxanarotaru.prodotti.Prodotto;
 
 public class SaveLoad {
-
-    /*public static void Save() {
-        BufferedWriter writer = null;
-        try {
-            //create a temporary file
-            //String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        	String toSave = "Ciao";
-            File logFile = new File(toSave);
-
-            System.out.println(logFile.getCanonicalPath());
-
-            writer = new BufferedWriter(new FileWriter(logFile));
-            writer.write("Hello world!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                // Close the writer regardless of what happens...
-                writer.close();
-            } catch (Exception e) {
-            }
-        }
-    }*/
 	
 	public static ListaSpesa Load(){
 		ListaSpesa loaded = new ListaSpesa();
@@ -51,6 +29,12 @@ public class SaveLoad {
         }catch(IOException e){
         	MessageDialog.openError(new Shell(), "Erorre", "Erorre nel caricamento");
         }
+		
+		String[] l = s.split("|");
+		for(int i = 0; i < l.length; i += 3){
+			Prodotto p = new Prodotto(l[i], l[i+1], Prezzo(l[i+2]));
+			loaded.aggiungiProdotto(p);
+		}
 		
 		return loaded;
 	}
@@ -75,4 +59,13 @@ public class SaveLoad {
         	MessageDialog.openError(new Shell(), "Erorre", "Erorre nel salvataggio");
         }
     }
+	
+	private static float Prezzo(String s){
+		float f = 0f;
+		try{
+			return Float.valueOf(s);
+		}catch(NumberFormatException nE){
+			return 0;
+		}
+	}
 }

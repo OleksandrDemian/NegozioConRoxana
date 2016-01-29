@@ -219,7 +219,8 @@ public class Main {
 		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SaveLoad.Load();
+				negozio = SaveLoad.Load();
+				aggiornaNegozio();
 			}
 		});
 		btnCaricaprodotti.setBounds(10, 397, 172, 25);

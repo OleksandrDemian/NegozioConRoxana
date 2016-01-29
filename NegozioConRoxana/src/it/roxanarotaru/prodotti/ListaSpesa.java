@@ -13,10 +13,6 @@ public class ListaSpesa {
 	
 	public void aggiungiProdotto(Prodotto p){
 		if(numProdotti < maxProdotti){
-			/*if(tesseraFedelta){
-				P.applicaSconto();
-				//System.out.println("Tessera fedeltà accettata");
-			}*/ 
 			lista[numProdotti++] = p;
 		} else{
 			System.out.println("la lista e' piena");
