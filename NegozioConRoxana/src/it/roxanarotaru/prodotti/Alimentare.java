@@ -56,7 +56,7 @@ public class Alimentare extends Prodotto {
 
 	@Override
 	public String toString() {
-		return "Nome: " + nome + "; Codice: " + codice + "; Prezzo: " + prezzo + "; Scadenza: " + scadenza;
+		return "\nNome: " + nome + "\nCodice: " + codice + "\nPrezzo: " + prezzo + "\nScadenza: " + scadenza;
 	}
 	
 }

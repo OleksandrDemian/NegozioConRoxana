@@ -16,9 +16,9 @@ import it.roxanarotaru.prodotti.ListaSpesa;
 import it.roxanarotaru.prodotti.NonAlimentare;
 import it.roxanarotaru.prodotti.Prodotto;
 
-public class SaveLoad {
+public class Functions {
 	
-	public static ListaSpesa Load(){
+	public static ListaSpesa Load(String tipo){
 		ListaSpesa loaded = new ListaSpesa();
 		FileReader fr;
 		String s = "";
@@ -27,6 +27,7 @@ public class SaveLoad {
         	fr = new FileReader("Salvataggio.txt");
 			BufferedReader br = new BufferedReader(fr);
         	s = br.readLine();
+        	br.close();
         }catch(IOException e){
         	Errore("Erorre nel caricamento");
         }

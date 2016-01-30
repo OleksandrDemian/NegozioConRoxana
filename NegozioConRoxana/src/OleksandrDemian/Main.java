@@ -80,7 +80,7 @@ public class Main {
 		negozioLista = new List(shell, SWT.BORDER);
 		negozioLista.setBounds(10, 31, 172, 267);
 		
-		negozio = SaveLoad.Load();
+		negozio = Functions.Load("Negozio");
 		aggiornaNegozio();
 		
 		Label lblProdotti = new Label(shell, SWT.NONE);
@@ -139,7 +139,7 @@ public class Main {
 					aggiornaNegozio();
 				}
 				else{
-					MessageDialog.openError(shell, "Erorre", "Erorre nel aggingere prodotto");
+					MessageDialog.openError(shell, "Erorre", "Erorre nel aggiungere prodotto");
 				}
 			}
 		});
@@ -197,8 +197,7 @@ public class Main {
 		calcPrezzo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MessageDialog.openInformation(shell, "Erorre", "Il prezzo è di: " + spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
-				//spesa.calcolaSpesa(btnTesseraFedelta.getSelection());
+				Functions.Info("Il prezzo e' di: " +spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
 			}
 		});
 		calcPrezzo.setBounds(223, 335, 172, 25);
@@ -213,7 +212,7 @@ public class Main {
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SaveLoad.Save(negozio);
+				Functions.Save(negozio);
 			}
 		});
 		btnSalvaprodotti.setBounds(10, 366, 172, 25);
@@ -223,7 +222,7 @@ public class Main {
 		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				negozio = SaveLoad.Load();
+				negozio = Functions.Load("Negozio");
 				aggiornaNegozio();
 			}
 		});
@@ -234,13 +233,15 @@ public class Main {
 		btnI.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof Alimentare){
-					Alimentare temp = (Alimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
-					MessageDialog.openInformation(shell, "Erorre", "Prodotto: " + temp);
-				}
-				if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof NonAlimentare){
-					NonAlimentare temp = (NonAlimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
-					MessageDialog.openInformation(shell, "Erorre", "Prodotto: " + temp);
+				if(negozioLista.getSelectionIndex() >= 0){
+					if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof Alimentare){
+						Alimentare temp = (Alimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
+						Functions.Info(temp.toString());
+					}
+					if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof NonAlimentare){
+						NonAlimentare temp = (NonAlimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
+						Functions.Info(temp.toString());
+					}
 				}
 			}
 		});
