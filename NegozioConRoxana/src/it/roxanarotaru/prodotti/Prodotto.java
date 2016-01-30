@@ -1,9 +1,9 @@
 package it.roxanarotaru.prodotti;
 
 public class Prodotto implements Cloneable {
-	String nome;
-	String codice;
-	float prezzo;
+	protected String nome;
+	protected String codice;
+	protected float prezzo;
 	protected boolean scontato;
 	
 	public Prodotto(){

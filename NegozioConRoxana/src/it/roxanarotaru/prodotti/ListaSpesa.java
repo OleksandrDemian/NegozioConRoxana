@@ -48,11 +48,4 @@ public class ListaSpesa {
 		}
 		numProdotti--;
 	}
-	
-	public void salvaLista(){
-		
-		
-		
-	}
-
 }

@@ -10,6 +10,12 @@ public class Alimentare extends Prodotto {
 		super(nome, codice, prezzo); // Chiama il costruttore della classe estesa
 		this.scadenza = data; // Imposta il nuovo attributo della classe Alimentare
 	}
+	
+	public Alimentare(String nome, String codice, float prezzo, String data) {
+		super(nome, codice, prezzo); // Chiama il costruttore della classe estesa
+		setScadenza(data);
+		//this.scadenza = data; // Imposta il nuovo attributo della classe Alimentare
+	}
 
 	/**
 	 * Imposta la scadenza
@@ -17,6 +23,17 @@ public class Alimentare extends Prodotto {
 	 */
 	public void setScadenza(Data scadenza) {
 		this.scadenza = scadenza;
+	}
+	
+	public void setScadenza(String s) {
+		String[] temp = s.split("/");
+		if(temp.length == 3){
+			try{
+				scadenza = new Data(Integer.valueOf(temp[0]), Integer.valueOf(temp[0]), Integer.valueOf(temp[0]));
+			}catch(Exception e){
+				System.out.println("Erorre nel creare data");
+			}
+		}
 	}
 	
 	public Data getScadenza() {
@@ -35,6 +52,11 @@ public class Alimentare extends Prodotto {
 			}
 			scontato = true;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Nome: " + nome + "; Codice: " + codice + "; Prezzo: " + prezzo + "; Scadenza: " + scadenza;
 	}
 	
 }

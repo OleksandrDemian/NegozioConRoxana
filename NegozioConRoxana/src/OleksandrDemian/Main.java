@@ -45,6 +45,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		try {
 			Main window = new Main();
 			window.open();
@@ -78,6 +79,9 @@ public class Main {
 		
 		negozioLista = new List(shell, SWT.BORDER);
 		negozioLista.setBounds(10, 31, 172, 267);
+		
+		negozio = SaveLoad.Load();
+		aggiornaNegozio();
 		
 		Label lblProdotti = new Label(shell, SWT.NONE);
 		lblProdotti.setAlignment(SWT.CENTER);
@@ -225,6 +229,23 @@ public class Main {
 		});
 		btnCaricaprodotti.setBounds(10, 397, 172, 25);
 		btnCaricaprodotti.setText("CaricaProdotti");
+		
+		Button btnI = new Button(shell, SWT.NONE);
+		btnI.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof Alimentare){
+					Alimentare temp = (Alimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
+					MessageDialog.openInformation(shell, "Erorre", "Prodotto: " + temp);
+				}
+				if(negozio.getProdotto(negozioLista.getSelectionIndex()) instanceof NonAlimentare){
+					NonAlimentare temp = (NonAlimentare)negozio.getProdotto(negozioLista.getSelectionIndex());
+					MessageDialog.openInformation(shell, "Erorre", "Prodotto: " + temp);
+				}
+			}
+		});
+		btnI.setBounds(188, 31, 29, 25);
+		btnI.setText("i");
 	}
 	
 	void aggiornaSpesa(){
