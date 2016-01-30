@@ -1,7 +1,6 @@
 package OleksandrDemian;
 
 import org.eclipse.swt.widgets.Display;
-import it.roxanarotaru.*;
 import it.roxanarotaru.prodotti.Alimentare;
 import it.roxanarotaru.prodotti.Data;
 import it.roxanarotaru.prodotti.ListaSpesa;
@@ -139,7 +138,7 @@ public class Main {
 					aggiornaNegozio();
 				}
 				else{
-					MessageDialog.openError(shell, "Erorre", "Erorre nel aggiungere prodotto");
+					Functions.Errore("Erorre nel aggiungere prodotto");
 				}
 			}
 		});
@@ -152,7 +151,7 @@ public class Main {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if(negozioLista.getSelectionIndex() == -1){
-					MessageDialog.openError(shell, "Erorre", "Non hai scelto nessun prodotto");
+					Functions.Info("Non hai scelto nessun prodotto");
 				}
 				else {
 					spesa.aggiungiProdotto(negozio.getProdotto(negozioLista.getSelectionIndex()));
@@ -212,7 +211,7 @@ public class Main {
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Functions.Save(negozio);
+				Functions.Save(negozio, "Negozio");
 			}
 		});
 		btnSalvaprodotti.setBounds(10, 366, 172, 25);

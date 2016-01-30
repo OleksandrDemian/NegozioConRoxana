@@ -24,12 +24,13 @@ public class Functions {
 		String s = "";
 		
 		try{
-        	fr = new FileReader("Salvataggio.txt");
+        	fr = new FileReader(tipo + ".txt");
 			BufferedReader br = new BufferedReader(fr);
         	s = br.readLine();
         	br.close();
         }catch(IOException e){
-        	Errore("Erorre nel caricamento");
+        	//BufferedWriter bw = new BufferedWriter(new FileWriter(tipo + ".txt"));
+        	e.printStackTrace();
         }
 		
 		try{
@@ -53,7 +54,7 @@ public class Functions {
 		return loaded;
 	}
 	
-	public static void Save(ListaSpesa l) {
+	public static void Save(ListaSpesa l, String tipo) {
         String stringToSave = "";
         BufferedWriter bw;
         
@@ -77,7 +78,7 @@ public class Functions {
         }
         
         try{
-        	bw = new BufferedWriter(new FileWriter("Salvataggio.txt"));
+        	bw = new BufferedWriter(new FileWriter(tipo + ".txt"));
         	bw.write(stringToSave);
         	bw.close();
         	Info("Salvato");
@@ -87,7 +88,6 @@ public class Functions {
     }
 	
 	private static float Prezzo(String s){
-		float f = 0f;
 		try{
 			return Float.valueOf(s);
 		}catch(NumberFormatException nE){
