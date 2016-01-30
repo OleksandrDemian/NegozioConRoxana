@@ -11,6 +11,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 
 import it.roxanarotaru.prodotti.Alimentare;
+import it.roxanarotaru.prodotti.Data;
 import it.roxanarotaru.prodotti.ListaSpesa;
 import it.roxanarotaru.prodotti.NonAlimentare;
 import it.roxanarotaru.prodotti.Prodotto;
@@ -45,7 +46,8 @@ public class SaveLoad {
 				}
 			}
 		}catch(Exception eS){
-			System.out.println("Non ci sono i prodotti");
+			Alimentare a = new Alimentare("Banane", "12354", 5.2f, new Data());
+			loaded.aggiungiProdotto(a);
 		}
 		return loaded;
 	}
