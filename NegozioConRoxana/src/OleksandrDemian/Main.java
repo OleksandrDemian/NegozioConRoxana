@@ -9,6 +9,10 @@ import it.roxanarotaru.prodotti.Prodotto;
 
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.List;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
@@ -79,7 +83,7 @@ public class Main {
 		negozioLista = new List(shell, SWT.BORDER);
 		negozioLista.setBounds(10, 31, 172, 267);
 		
-		negozio = Functions.Load("Negozio");
+		//negozio = Functions.Load("Negozio");
 		aggiornaNegozio();
 		
 		Label lblProdotti = new Label(shell, SWT.NONE);
@@ -211,7 +215,13 @@ public class Main {
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Functions.Save(negozio, "Negozio");
+				//Functions.Save(negozio, "Negozio");
+				try {
+					Functions.Salva(negozio, "Negozio.txt");
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSalvaprodotti.setBounds(10, 366, 172, 25);
@@ -221,7 +231,13 @@ public class Main {
 		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				negozio = Functions.Load("Negozio");
+				//negozio = Functions.Load("Negozio");
+				try {
+					negozio = Functions.Carica("Negozio.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				aggiornaNegozio();
 			}
 		});

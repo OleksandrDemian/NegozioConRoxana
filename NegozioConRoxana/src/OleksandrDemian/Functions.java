@@ -3,9 +3,12 @@ package OleksandrDemian;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -18,7 +21,7 @@ import it.roxanarotaru.prodotti.Prodotto;
 
 public class Functions {
 	
-	public static ListaSpesa Load(String tipo){
+	/*public static ListaSpesa Load(String tipo){
 		ListaSpesa loaded = new ListaSpesa();
 		FileReader fr;
 		String s = "";
@@ -85,11 +88,47 @@ public class Functions {
         }catch(IOException e){
         	Errore("Errore nel salvataggio");
         }
-    }
+    }*/
+	
+	public static void Salva(ListaSpesa ls, String nomeFile) throws FileNotFoundException{
+		FileOutputStream salva = new FileOutputStream(nomeFile);
+		PrintStream ps = new PrintStream(salva);
+		ps.println(ls.Lunghezza());
+		for(int i=0; i<ls.Lunghezza();i++){
+			ps.println(ls.getProdotto(i).getNome());
+			ps.println(ls.getProdotto(i).getPrezzo());
+			ps.println(ls.getProdotto(i).getCodice());
+		}
+	}
+	
+	public static ListaSpesa Carica(String nomeFile) throws IOException{
+		FileReader carica = new FileReader(nomeFile);
+		BufferedReader cs = new BufferedReader(carica);
+		int max=Num(cs.readLine());
+		Info("Numero caricato " + max);
+		ListaSpesa lista = new ListaSpesa();
+		for(int i=0; i<max;i++){
+			Info(i);
+			String nome = cs.readLine();
+			float prezzo = Prezzo(cs.readLine());
+			String codice = cs.readLine();
+			Prodotto temp=new Prodotto(nome,codice,prezzo);
+			lista.aggiungiProdotto(temp);
+		}
+		
+		return lista;
+	}
 	
 	private static float Prezzo(String s){
 		try{
 			return Float.valueOf(s);
+		}catch(NumberFormatException nE){
+			return 0;
+		}
+	}
+	private static int Num(String s){
+		try{
+			return Integer.valueOf(s);
 		}catch(NumberFormatException nE){
 			return 0;
 		}
