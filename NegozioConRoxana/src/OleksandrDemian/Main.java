@@ -215,7 +215,6 @@ public class Main {
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//Functions.Save(negozio, "Negozio");
 				try {
 					Functions.Salva(negozio, "Negozio.txt");
 				} catch (FileNotFoundException e1) {
@@ -231,7 +230,6 @@ public class Main {
 		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//negozio = Functions.Load("Negozio");
 				try {
 					negozio = Functions.Carica("Negozio.txt");
 				} catch (IOException e1) {
@@ -262,6 +260,37 @@ public class Main {
 		});
 		btnI.setBounds(188, 31, 29, 25);
 		btnI.setText("i");
+		
+		Button btnSalvaspessa = new Button(shell, SWT.NONE);
+		btnSalvaspessa.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					Functions.Salva(negozio, "Spesa.txt");
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSalvaspessa.setBounds(223, 366, 172, 25);
+		btnSalvaspessa.setText("SalvaSpesa");
+		
+		Button btnCaricaspesa = new Button(shell, SWT.NONE);
+		btnCaricaspesa.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					spesa = Functions.Carica("Spesa.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				aggiornaSpesa();
+			}
+		});
+		btnCaricaspesa.setBounds(223, 397, 172, 25);
+		btnCaricaspesa.setText("CaricaSpesa");
 	}
 	
 	void aggiornaSpesa(){

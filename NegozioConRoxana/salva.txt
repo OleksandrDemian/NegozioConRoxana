@@ -1,0 +1,10 @@
+3
+NomeProdotto
+45.0
+Codice a barre
+45tto
+45.0
+Codice a barre
+45tmh
+45.0
+Codice a barre

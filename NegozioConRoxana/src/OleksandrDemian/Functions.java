@@ -105,10 +105,8 @@ public class Functions {
 		FileReader carica = new FileReader(nomeFile);
 		BufferedReader cs = new BufferedReader(carica);
 		int max=Num(cs.readLine());
-		Info("Numero caricato " + max);
 		ListaSpesa lista = new ListaSpesa();
 		for(int i=0; i<max;i++){
-			Info(i);
 			String nome = cs.readLine();
 			float prezzo = Prezzo(cs.readLine());
 			String codice = cs.readLine();
