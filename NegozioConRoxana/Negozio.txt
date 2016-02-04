@@ -1,4 +1,16 @@
-1
-asd
-8.0
+3
+A
+NomeProdotto
+5.0
 Codice a barre
+4/2/2016
+A
+NomeProdottocvgh
+57.0
+Codice a barre
+4/2/2016
+NA
+gh
+57.0
+Codice a barre
+Material

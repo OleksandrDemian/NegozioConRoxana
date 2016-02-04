@@ -32,6 +32,6 @@ public class NonAlimentare extends Prodotto {
 	}
 	
 	public String toString() {
-		return "Nome: " + nome + "; Codice: " + codice + "; Prezzo: " + prezzo + "; Materiale: " + materiale;
+		return "\nNome: " + nome + "\nCodice: " + codice + "\nPrezzo: " + prezzo + "\nMateriale: " + materiale;
 	}
 }

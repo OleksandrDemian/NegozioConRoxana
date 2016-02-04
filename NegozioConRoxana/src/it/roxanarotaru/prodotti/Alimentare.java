@@ -29,7 +29,7 @@ public class Alimentare extends Prodotto {
 		String[] temp = s.split("/");
 		if(temp.length == 3){
 			try{
-				scadenza = new Data(Integer.valueOf(temp[0]), Integer.valueOf(temp[0]), Integer.valueOf(temp[0]));
+				scadenza = new Data(Integer.valueOf(temp[0]), Integer.valueOf(temp[1]), Integer.valueOf(temp[2]));
 			}catch(Exception e){
 				System.out.println("Erorre nel creare data");
 			}

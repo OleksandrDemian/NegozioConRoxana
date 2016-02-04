@@ -21,84 +21,31 @@ import it.roxanarotaru.prodotti.Prodotto;
 
 public class Functions {
 	
-	/*public static ListaSpesa Load(String tipo){
-		ListaSpesa loaded = new ListaSpesa();
-		FileReader fr;
-		String s = "";
-		
-		try{
-        	fr = new FileReader(tipo + ".txt");
-			BufferedReader br = new BufferedReader(fr);
-        	s = br.readLine();
-        	br.close();
-        }catch(IOException e){
-        	//BufferedWriter bw = new BufferedWriter(new FileWriter(tipo + ".txt"));
-        	e.printStackTrace();
-        }
-		
-		try{
-			String[] l = s.split(";");
-			if(l.length != 0){
-				for(int i = 0; i < l.length; i += 5){
-					if(l[i].equals("A")){
-						Alimentare a = new Alimentare(l[i+1], l[i+2], Prezzo(l[i+3]), l[i+4]);
-						loaded.aggiungiProdotto(a);
-					}
-					if(l[i].equals("N")){
-						NonAlimentare n = new NonAlimentare(l[i+1], l[i+2], Prezzo(l[i+3]), l[i+4]);
-						loaded.aggiungiProdotto(n);
-					}
-				}
-			}
-		}catch(Exception eS){
-			Alimentare a = new Alimentare("Banane", "12354", 5.2f, new Data());
-			loaded.aggiungiProdotto(a);
-		}
-		return loaded;
-	}
-	
-	public static void Save(ListaSpesa l, String tipo) {
-        String stringToSave = "";
-        BufferedWriter bw;
-        
-        for(int i = 0; i < l.Lunghezza(); i++){
-        	if(l.getProdotto(i) instanceof Alimentare){
-        		Alimentare a = (Alimentare) l.getProdotto(i); 
-        		stringToSave += "A;";
-            	stringToSave += a.getNome() + ";";
-            	stringToSave += a.getCodice() + ";";
-            	stringToSave += a.getPrezzo() + ";";
-            	stringToSave += a.getScadenza() + ";";
-        	}
-        	else{
-        		NonAlimentare n = (NonAlimentare) l.getProdotto(i); 
-        		stringToSave += "N;";
-            	stringToSave += n.getNome() + ";";
-            	stringToSave += n.getCodice() + ";";
-            	stringToSave += n.getPrezzo() + ";";
-            	stringToSave += n.getMateriale() + ";";
-        	}
-        }
-        
-        try{
-        	bw = new BufferedWriter(new FileWriter(tipo + ".txt"));
-        	bw.write(stringToSave);
-        	bw.close();
-        	Info("Salvato");
-        }catch(IOException e){
-        	Errore("Errore nel salvataggio");
-        }
-    }*/
-	
 	public static void Salva(ListaSpesa ls, String nomeFile) throws FileNotFoundException{
 		FileOutputStream salva = new FileOutputStream(nomeFile);
 		PrintStream ps = new PrintStream(salva);
 		ps.println(ls.Lunghezza());
 		for(int i=0; i<ls.Lunghezza();i++){
-			ps.println(ls.getProdotto(i).getNome());
-			ps.println(ls.getProdotto(i).getPrezzo());
-			ps.println(ls.getProdotto(i).getCodice());
+			
+			if(ls.getProdotto(i) instanceof Alimentare){
+				Alimentare al = (Alimentare) ls.getProdotto(i);
+				ps.println("A");
+				ps.println(al.getNome());
+				ps.println(al.getPrezzo());
+				ps.println(al.getCodice());
+				ps.println(al.getScadenza());
+			}
+			if(ls.getProdotto(i) instanceof NonAlimentare){
+				NonAlimentare nl = (NonAlimentare) ls.getProdotto(i);
+				ps.println("NA");
+				ps.println(nl.getNome());
+				ps.println(nl.getPrezzo());
+				ps.println(nl.getCodice());
+				ps.println(nl.getMateriale());
+			}
+			
 		}
+		ps.close();
 	}
 	
 	public static ListaSpesa Carica(String nomeFile) throws IOException{
@@ -107,15 +54,29 @@ public class Functions {
 		int max=Num(cs.readLine());
 		ListaSpesa lista = new ListaSpesa();
 		for(int i=0; i<max;i++){
-			String nome = cs.readLine();
-			float prezzo = Prezzo(cs.readLine());
-			String codice = cs.readLine();
-			Prodotto temp=new Prodotto(nome,codice,prezzo);
-			lista.aggiungiProdotto(temp);
+			String tipo=cs.readLine();
+			if(tipo.equals("A")){
+				String nome = cs.readLine();
+				float prezzo = Prezzo(cs.readLine());
+				String codice = cs.readLine();
+				String data = cs.readLine();
+				Alimentare temp = new Alimentare(nome,codice,prezzo,data);
+				lista.aggiungiProdotto(temp);
+			}
+			if(tipo.equals("NA")){
+				String nome = cs.readLine();
+				float prezzo = Prezzo(cs.readLine());
+				String codice = cs.readLine();
+				String materiale= cs.readLine();
+				NonAlimentare temp = new NonAlimentare(nome,codice,prezzo,materiale);
+				lista.aggiungiProdotto(temp);
+			}
 		}
-		
+		cs.close();
 		return lista;
 	}
+	
+	
 	
 	private static float Prezzo(String s){
 		try{
