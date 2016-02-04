@@ -1,6 +1,8 @@
 package OleksandrDemian;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
+
 import it.roxanarotaru.prodotti.Alimentare;
 import it.roxanarotaru.prodotti.Data;
 import it.roxanarotaru.prodotti.ListaSpesa;
@@ -291,6 +293,24 @@ public class Main {
 		});
 		btnCaricaspesa.setBounds(223, 397, 172, 25);
 		btnCaricaspesa.setText("CaricaSpesa");
+		
+		Button btnApriFile = new Button(shell, SWT.NONE);
+		btnApriFile.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				FileDialog fileDialog = new FileDialog(shell);
+				fileDialog.setFilterExtensions(new String[]{"*.txt", "*.csv", "*.*"}); //opzionale
+				String fileScelto = fileDialog.open();
+
+				if(fileScelto != null) {
+					MessageDialog.openInformation(shell, "File ", fileScelto);
+					MessageDialog.openInformation(shell, "File (solo nome)", fileDialog.getFileName());
+				}
+
+			}
+		});
+		btnApriFile.setBounds(460, 304, 75, 25);
+		btnApriFile.setText("Apri file");
 	}
 	
 	void aggiornaSpesa(){

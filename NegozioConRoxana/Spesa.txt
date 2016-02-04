@@ -1,0 +1,10 @@
+3
+asd
+8.0
+Codice a barre
+NomeProdotto
+4.0
+Codice a barre
+Nomsadto
+4.0
+Codice a barre

@@ -22,9 +22,8 @@ import it.roxanarotaru.prodotti.Prodotto;
 public class Functions {
 	
 	public static void Salva(ListaSpesa ls, String nomeFile) throws FileNotFoundException{
-		FileOutputStream salva = new FileOutputStream(nomeFile);
+		FileOutputStream salva = new FileOutputStream(nomeFile, true);
 		PrintStream ps = new PrintStream(salva);
-		ps.println(ls.Lunghezza());
 		for(int i=0; i<ls.Lunghezza();i++){
 			
 			if(ls.getProdotto(i) instanceof Alimentare){
@@ -51,10 +50,11 @@ public class Functions {
 	public static ListaSpesa Carica(String nomeFile) throws IOException{
 		FileReader carica = new FileReader(nomeFile);
 		BufferedReader cs = new BufferedReader(carica);
-		int max=Num(cs.readLine());
 		ListaSpesa lista = new ListaSpesa();
-		for(int i=0; i<max;i++){
+		while(true){
 			String tipo=cs.readLine();
+			if(tipo == null)
+				break;
 			if(tipo.equals("A")){
 				String nome = cs.readLine();
 				float prezzo = Prezzo(cs.readLine());
