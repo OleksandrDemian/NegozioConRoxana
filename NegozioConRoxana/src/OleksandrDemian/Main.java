@@ -24,6 +24,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.DateTime;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Main {
 	ListaSpesa negozio = new ListaSpesa();
@@ -34,7 +35,7 @@ public class Main {
 	DateTime dateTime;
 	Button btnEliminadaspesa;
 
-	protected Shell shell;
+	protected Shell shlNegozioDiRoxana;
 	private Text txtNomeprodotto;
 	private Text txtPrezzo;
 	private Text txtCodiceABarre;
@@ -44,6 +45,7 @@ public class Main {
 	private Button calcPrezzo;
 	private Button btnTesseraFedelta;
 	private Button btnCaricaprodotti;
+	private Text txtByRoxy;
 
 	/**
 	 * Launch the application.
@@ -65,9 +67,9 @@ public class Main {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlNegozioDiRoxana.open();
+		shlNegozioDiRoxana.layout();
+		while (!shlNegozioDiRoxana.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -78,55 +80,74 @@ public class Main {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(551, 463);
-		shell.setText("SWT Application");
+		shlNegozioDiRoxana = new Shell();
+		shlNegozioDiRoxana.setBackgroundImage(SWTResourceManager.getImage("spesassss.jpg"));
+		shlNegozioDiRoxana.setSize(551,463);
+		shlNegozioDiRoxana.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+		shlNegozioDiRoxana.setSize(551, 463);
+		shlNegozioDiRoxana.setText("Negozio di Roxana e Demian");
 		
-		negozioLista = new List(shell, SWT.BORDER);
+		negozioLista = new List(shlNegozioDiRoxana, SWT.BORDER);
+		negozioLista.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		negozioLista.setBounds(10, 31, 172, 267);
 		
 		//negozio = Functions.Load("Negozio");
 		aggiornaNegozio();
 		
-		Label lblProdotti = new Label(shell, SWT.NONE);
+		Label lblProdotti = new Label(shlNegozioDiRoxana, SWT.NONE);
+		lblProdotti.setForeground(SWTResourceManager.getColor(127, 255, 0));
 		lblProdotti.setAlignment(SWT.CENTER);
 		lblProdotti.setBounds(10, 10, 172, 15);
 		lblProdotti.setText("Prodotti");
 		
-		spesaLista = new List(shell, SWT.BORDER);
+		spesaLista = new List(shlNegozioDiRoxana, SWT.BORDER);
+		spesaLista.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		spesaLista.setBounds(223, 31, 172, 244);
 		
-		Label lblSpesa = new Label(shell, SWT.NONE);
+		Label lblSpesa = new Label(shlNegozioDiRoxana, SWT.NONE);
+		lblSpesa.setForeground(SWTResourceManager.getColor(173, 255, 47));
+		lblSpesa.setBackground(SWTResourceManager.getColor(0, 0, 0));
 		lblSpesa.setText("Spesa");
 		lblSpesa.setAlignment(SWT.CENTER);
 		lblSpesa.setBounds(223, 10, 172, 15);
 		
-		txtNomeprodotto = new Text(shell, SWT.BORDER);
+		txtNomeprodotto = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		txtNomeprodotto.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
+		txtNomeprodotto.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		txtNomeprodotto.setText("NomeProdotto");
 		txtNomeprodotto.setBounds(417, 32, 108, 21);
 		
-		txtPrezzo = new Text(shell, SWT.BORDER);
+		txtPrezzo = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		txtPrezzo.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
+		txtPrezzo.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		txtPrezzo.setText("Prezzo");
 		txtPrezzo.setBounds(417, 59, 108, 21);
 		
-		txtCodiceABarre = new Text(shell, SWT.BORDER);
+		txtCodiceABarre = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		txtCodiceABarre.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
+		txtCodiceABarre.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		txtCodiceABarre.setText("Codice a barre");
 		txtCodiceABarre.setBounds(417, 86, 108, 21);
 		
-		material = new Text(shell, SWT.BORDER);
+		material = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		material.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
+		material.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		material.setText("Material");
 		material.setBounds(417, 142, 108, 21);
 		
-		dateTime = new DateTime(shell, SWT.BORDER);
+		dateTime = new DateTime(shlNegozioDiRoxana, SWT.BORDER);
+		dateTime.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		dateTime.setBounds(417, 169, 108, 24);
 		
-		tipo = new Combo(shell, SWT.NONE);
+		tipo = new Combo(shlNegozioDiRoxana, SWT.NONE);
+		tipo.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
+		tipo.setBackground(SWTResourceManager.getColor(152, 251, 152));
 		tipo.setItems(new String[] {"Alimentari", "Non alimentari"});
 		tipo.setBounds(417, 113, 108, 15);
 		tipo.setText("Tipo prodotto");
 		tipo.select(0);
 		
-		Button btnAggiungiProdotto = new Button(shell, SWT.NONE);
+		Button btnAggiungiProdotto = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnAggiungiProdotto.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -152,7 +173,8 @@ public class Main {
 		btnAggiungiProdotto.setBounds(417, 199, 108, 25);
 		btnAggiungiProdotto.setText("Aggiungi prodotto");
 		
-		compra = new Button(shell, SWT.NONE);
+		compra = new Button(shlNegozioDiRoxana, SWT.NONE);
+		compra.setForeground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		compra.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -168,7 +190,7 @@ public class Main {
 		compra.setBounds(10, 304, 172, 25);
 		compra.setText("Compra");
 		
-		eliminaNegozio = new Button(shell, SWT.NONE);
+		eliminaNegozio = new Button(shlNegozioDiRoxana, SWT.NONE);
 		eliminaNegozio.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -181,7 +203,7 @@ public class Main {
 		eliminaNegozio.setBounds(10, 335, 172, 25);
 		eliminaNegozio.setText("Elimina");
 		
-		btnEliminadaspesa = new Button(shell, SWT.NONE);
+		btnEliminadaspesa = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnEliminadaspesa.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -194,11 +216,11 @@ public class Main {
 		btnEliminadaspesa.setBounds(223, 304, 172, 25);
 		btnEliminadaspesa.setText("Elimina");
 		
-		btnTesseraFedelta = new Button(shell, SWT.CHECK);
+		btnTesseraFedelta = new Button(shlNegozioDiRoxana, SWT.CHECK);
 		btnTesseraFedelta.setBounds(223, 282, 172, 16);
 		btnTesseraFedelta.setText("Tessera fedelta");
 		
-		calcPrezzo = new Button(shell, SWT.NONE);
+		calcPrezzo = new Button(shlNegozioDiRoxana, SWT.NONE);
 		calcPrezzo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -208,12 +230,14 @@ public class Main {
 		calcPrezzo.setBounds(223, 335, 172, 25);
 		calcPrezzo.setText("Calcola prezzo\r\n");
 		
-		Label lblCreaProdotto = new Label(shell, SWT.NONE);
+		Label lblCreaProdotto = new Label(shlNegozioDiRoxana, SWT.NONE);
+		lblCreaProdotto.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblCreaProdotto.setBackground(SWTResourceManager.getColor(165, 42, 42));
 		lblCreaProdotto.setAlignment(SWT.CENTER);
 		lblCreaProdotto.setBounds(417, 10, 108, 15);
 		lblCreaProdotto.setText("Crea prodotto");
 		
-		Button btnSalvaprodotti = new Button(shell, SWT.NONE);
+		Button btnSalvaprodotti = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -228,7 +252,7 @@ public class Main {
 		btnSalvaprodotti.setBounds(10, 366, 172, 25);
 		btnSalvaprodotti.setText("SalvaProdotti");
 		
-		btnCaricaprodotti = new Button(shell, SWT.NONE);
+		btnCaricaprodotti = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnCaricaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -244,7 +268,7 @@ public class Main {
 		btnCaricaprodotti.setBounds(10, 397, 172, 25);
 		btnCaricaprodotti.setText("CaricaProdotti");
 		
-		Button btnI = new Button(shell, SWT.NONE);
+		Button btnI = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnI.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -263,7 +287,7 @@ public class Main {
 		btnI.setBounds(188, 31, 29, 25);
 		btnI.setText("i");
 		
-		Button btnSalvaspessa = new Button(shell, SWT.NONE);
+		Button btnSalvaspessa = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnSalvaspessa.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -278,7 +302,7 @@ public class Main {
 		btnSalvaspessa.setBounds(223, 366, 172, 25);
 		btnSalvaspessa.setText("SalvaSpesa");
 		
-		Button btnCaricaspesa = new Button(shell, SWT.NONE);
+		Button btnCaricaspesa = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnCaricaspesa.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -294,23 +318,30 @@ public class Main {
 		btnCaricaspesa.setBounds(223, 397, 172, 25);
 		btnCaricaspesa.setText("CaricaSpesa");
 		
-		Button btnApriFile = new Button(shell, SWT.NONE);
+		Button btnApriFile = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnApriFile.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				FileDialog fileDialog = new FileDialog(shell);
+				FileDialog fileDialog = new FileDialog(shlNegozioDiRoxana);
 				fileDialog.setFilterExtensions(new String[]{"*.txt", "*.csv", "*.*"}); //opzionale
 				String fileScelto = fileDialog.open();
 
 				if(fileScelto != null) {
-					MessageDialog.openInformation(shell, "File ", fileScelto);
-					MessageDialog.openInformation(shell, "File (solo nome)", fileDialog.getFileName());
+					MessageDialog.openInformation(shlNegozioDiRoxana, "File ", fileScelto);
+					MessageDialog.openInformation(shlNegozioDiRoxana, "File (solo nome)", fileDialog.getFileName());
 				}
 
 			}
 		});
-		btnApriFile.setBounds(460, 304, 75, 25);
+		btnApriFile.setBounds(417, 241, 75, 25);
 		btnApriFile.setText("Apri file");
+		
+		txtByRoxy = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		txtByRoxy.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
+		txtByRoxy.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		txtByRoxy.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+		txtByRoxy.setText("By Roxy & Demian");
+		txtByRoxy.setBounds(401, 397, 134, 21);
 	}
 	
 	void aggiornaSpesa(){
