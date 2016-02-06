@@ -102,14 +102,14 @@ public class Main {
 		
 		spesaLista = new List(shlNegozioDiRoxana, SWT.BORDER);
 		spesaLista.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
-		spesaLista.setBounds(223, 31, 172, 244);
+		spesaLista.setBounds(188, 31, 172, 244);
 		
 		Label lblSpesa = new Label(shlNegozioDiRoxana, SWT.NONE);
 		lblSpesa.setForeground(SWTResourceManager.getColor(173, 255, 47));
 		lblSpesa.setBackground(SWTResourceManager.getColor(0, 0, 0));
 		lblSpesa.setText("Spesa");
 		lblSpesa.setAlignment(SWT.CENTER);
-		lblSpesa.setBounds(223, 10, 172, 15);
+		lblSpesa.setBounds(188, 10, 172, 15);
 		
 		txtNomeprodotto = new Text(shlNegozioDiRoxana, SWT.BORDER);
 		txtNomeprodotto.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
@@ -213,11 +213,11 @@ public class Main {
 				}
 			}
 		});
-		btnEliminadaspesa.setBounds(223, 304, 172, 25);
+		btnEliminadaspesa.setBounds(188, 304, 172, 25);
 		btnEliminadaspesa.setText("Elimina");
 		
 		btnTesseraFedelta = new Button(shlNegozioDiRoxana, SWT.CHECK);
-		btnTesseraFedelta.setBounds(223, 282, 172, 16);
+		btnTesseraFedelta.setBounds(188, 282, 172, 16);
 		btnTesseraFedelta.setText("Tessera fedelta");
 		
 		calcPrezzo = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -227,7 +227,7 @@ public class Main {
 				Functions.Info("Il prezzo e' di: " +spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
 			}
 		});
-		calcPrezzo.setBounds(223, 335, 172, 25);
+		calcPrezzo.setBounds(188, 335, 172, 25);
 		calcPrezzo.setText("Calcola prezzo\r\n");
 		
 		Label lblCreaProdotto = new Label(shlNegozioDiRoxana, SWT.NONE);
@@ -284,7 +284,7 @@ public class Main {
 				}
 			}
 		});
-		btnI.setBounds(188, 31, 29, 25);
+		btnI.setBounds(366, 30, 29, 25);
 		btnI.setText("i");
 		
 		Button btnSalvaspessa = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -299,7 +299,7 @@ public class Main {
 				}
 			}
 		});
-		btnSalvaspessa.setBounds(223, 366, 172, 25);
+		btnSalvaspessa.setBounds(188, 366, 172, 25);
 		btnSalvaspessa.setText("SalvaSpesa");
 		
 		Button btnCaricaspesa = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -315,7 +315,7 @@ public class Main {
 				aggiornaSpesa();
 			}
 		});
-		btnCaricaspesa.setBounds(223, 397, 172, 25);
+		btnCaricaspesa.setBounds(188, 397, 172, 25);
 		btnCaricaspesa.setText("CaricaSpesa");
 		
 		Button btnApriFile = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -341,7 +341,7 @@ public class Main {
 		txtByRoxy.setForeground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
 		txtByRoxy.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		txtByRoxy.setText("By Roxy & Demian");
-		txtByRoxy.setBounds(401, 397, 134, 21);
+		txtByRoxy.setBounds(391, 278, 134, 21);
 	}
 	
 	void aggiornaSpesa(){
