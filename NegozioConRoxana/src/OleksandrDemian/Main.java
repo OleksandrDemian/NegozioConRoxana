@@ -224,7 +224,13 @@ public class Main {
 		calcPrezzo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Functions.Info("Il prezzo e' di: " +spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
+				String elenco = "";
+				for(int i = 0; i < spesa.Lunghezza(); i++){
+					elenco += spesa.getProdotto(i).getNome() + " - " + spesa.getProdotto(i).getPrezzo() + "euro\n";
+				}
+				elenco += "Totale: " + spesa.calcolaSpesa(btnTesseraFedelta.getSelection()) + " euro";
+				//Functions.Info("Il prezzo e' di: " +spesa.calcolaSpesa(btnTesseraFedelta.getSelection()));
+				Functions.Info(elenco);
 			}
 		});
 		calcPrezzo.setBounds(188, 335, 172, 25);
