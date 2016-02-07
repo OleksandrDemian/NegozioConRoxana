@@ -12,6 +12,13 @@ public class Prodotto implements Cloneable {
 		this.prezzo = 0.0f;
 		scontato = false;
 	}
+	
+	public Prodotto(Prodotto p){
+		this.nome = p.getNome();
+		this.codice = p.getCodice();
+		this.prezzo = p.getPrezzo();
+		scontato = false;
+	}
 
 	public Prodotto(String nome, String codice, float prezzo) {
 		super();

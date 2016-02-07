@@ -13,7 +13,15 @@ public class ListaSpesa {
 	
 	public void aggiungiProdotto(Prodotto p){
 		if(numProdotti < maxProdotti){
-			lista[numProdotti++] = p;
+			if(p instanceof Alimentare){
+				Alimentare a = (Alimentare) p;
+				lista[numProdotti++] = new Alimentare(a);
+			}
+			if(p instanceof NonAlimentare){
+				NonAlimentare n = (NonAlimentare) p;
+				lista[numProdotti++] = new NonAlimentare(n);
+			}
+			//lista[numProdotti++] = p;
 		} else{
 			System.out.println("la lista e' piena");
 		}

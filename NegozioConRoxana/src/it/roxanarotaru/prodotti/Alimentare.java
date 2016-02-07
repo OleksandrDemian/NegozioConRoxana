@@ -16,6 +16,12 @@ public class Alimentare extends Prodotto {
 		setScadenza(data);
 		//this.scadenza = data; // Imposta il nuovo attributo della classe Alimentare
 	}
+	
+	public Alimentare(Alimentare a) {
+		super(a.getNome(), a.getCodice(), a.getPrezzo()); // Chiama il costruttore della classe estesa
+		setScadenza(a.getScadenza());
+		//this.scadenza = data; // Imposta il nuovo attributo della classe Alimentare
+	}
 
 	/**
 	 * Imposta la scadenza

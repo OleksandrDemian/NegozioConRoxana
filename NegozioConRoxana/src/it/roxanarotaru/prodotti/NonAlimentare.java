@@ -8,6 +8,12 @@ public class NonAlimentare extends Prodotto {
 		super(nome, codice, prezzo);
 		this.materiale = materiale;
 	}
+	
+	public NonAlimentare(NonAlimentare n) {
+		super(n.getNome(), n.getCodice(), n.getPrezzo()); // Chiama il costruttore della classe estesa
+		setMateriale(n.getMateriale());
+		//this.scadenza = data; // Imposta il nuovo attributo della classe Alimentare
+	}
 
 	public void setMateriale(String materiale) {
 		this.materiale = materiale;
