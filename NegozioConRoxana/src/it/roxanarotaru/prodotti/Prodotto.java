@@ -47,6 +47,10 @@ public class Prodotto implements Cloneable {
 	public float getPrezzo() {
 		return prezzo;
 	}
+	
+	public float getPrezzoScontato() {
+		return this.prezzo * 0.95f;
+	}
 
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;

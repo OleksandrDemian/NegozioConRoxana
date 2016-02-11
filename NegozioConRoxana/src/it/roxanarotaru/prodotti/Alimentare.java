@@ -46,12 +46,19 @@ public class Alimentare extends Prodotto {
 		return scadenza;
 	}
 	
+	public float getPrezzoScontato() {
+		if (scadenza.getDifference(new Data())<10) {
+			return prezzo * 0.8f;
+		} else {
+			return super.getPrezzoScontato();
+		}
+	}
+	
 	@Override
 	public void applicaSconto() {
 		// TODO Auto-generated method stub
 		if(!scontato){
-			System.out.println(scadenza.getDifference(new Data()));
-			if (scadenza.getDifference(new Data())>10) {
+			if (scadenza.getDifference(new Data())<10) {
 				prezzo = prezzo * 0.8f;
 				System.out.println(this.nome + "Sconto");
 			} else {

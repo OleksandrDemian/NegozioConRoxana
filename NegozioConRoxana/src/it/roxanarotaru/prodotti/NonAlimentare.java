@@ -23,12 +23,20 @@ public class NonAlimentare extends Prodotto {
 		return materiale;
 	}
 	
+	public float getPrezzoScontato() {
+		if (materiale.equals("carta") || materiale.equals("vetro")) {
+			return prezzo * 0.9f;
+		} else {
+			return super.getPrezzoScontato();
+		}
+	}
+	
 	@Override
 	public void applicaSconto() {
 		// TODO Auto-generated method stub
 		if(!scontato){
 			if (materiale.equals("carta") || materiale.equals("vetro")) {
-				prezzo = prezzo *0.90f;
+				prezzo = prezzo * 0.90f;
 				System.out.println(this.nome + "Sconto");
 			} else {
 				super.applicaSconto();

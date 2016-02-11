@@ -36,8 +36,10 @@ public class ListaSpesa {
 		float totale = 0;
 		for(int i=0; i<numProdotti; i++){
 			if(sconto)
-				lista[i].applicaSconto();
-			totale = totale + lista[i].getPrezzo();
+				totale = totale + lista[i].getPrezzoScontato();
+			else{
+				totale = totale + lista[i].getPrezzo();
+			}
 		}
 		return totale;
 	}
@@ -59,5 +61,6 @@ public class ListaSpesa {
 	
 	public void eliminaTuttiProdotti(){
 		numProdotti = 0;
+
 	}
 }
