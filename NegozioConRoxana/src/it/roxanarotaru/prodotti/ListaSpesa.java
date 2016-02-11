@@ -56,4 +56,8 @@ public class ListaSpesa {
 		}
 		numProdotti--;
 	}
+	
+	public void eliminaTuttiProdotti(){
+		numProdotti = 0;
+	}
 }

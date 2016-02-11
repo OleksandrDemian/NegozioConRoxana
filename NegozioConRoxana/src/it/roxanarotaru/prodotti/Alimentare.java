@@ -50,7 +50,8 @@ public class Alimentare extends Prodotto {
 	public void applicaSconto() {
 		// TODO Auto-generated method stub
 		if(!scontato){
-			if (scadenza.getDifference(new Data())<10) {
+			System.out.println(scadenza.getDifference(new Data()));
+			if (scadenza.getDifference(new Data())>10) {
 				prezzo = prezzo * 0.8f;
 				System.out.println(this.nome + "Sconto");
 			} else {

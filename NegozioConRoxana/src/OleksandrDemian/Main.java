@@ -46,6 +46,7 @@ public class Main {
 	private Button btnTesseraFedelta;
 	private Button btnCaricaprodotti;
 	private Text txtByRoxy;
+	private Button button_1;
 
 	/**
 	 * Launch the application.
@@ -81,28 +82,36 @@ public class Main {
 	 */
 	protected void createContents() {
 		shlNegozioDiRoxana = new Shell();
+		shlNegozioDiRoxana.setSize(550, 574);
+		//shlNegozioDiRoxana.setSize(550, 562);
 		shlNegozioDiRoxana.setBackgroundImage(SWTResourceManager.getImage("spesassss.jpg"));
-		shlNegozioDiRoxana.setSize(551,463);
-		shlNegozioDiRoxana.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
-		shlNegozioDiRoxana.setSize(551, 463);
+		shlNegozioDiRoxana.setSize(550,560);
+		//shlNegozioDiRoxana.setBackground(SWTResourceManager.getColor(SWT.COLOR_MAGENTA));
+		//shlNegozioDiRoxana.setSize(550, 500);*/
 		shlNegozioDiRoxana.setText("Negozio di Roxana e Demian");
-		
+
 		negozioLista = new List(shlNegozioDiRoxana, SWT.BORDER);
 		negozioLista.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		negozioLista.setBounds(10, 31, 172, 267);
 		
-		//negozio = Functions.Load("Negozio");
+		try {
+			negozio = Functions.Carica("Negozio.txt");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		aggiornaNegozio();
 		aggiornaNegozio();
 		
 		Label lblProdotti = new Label(shlNegozioDiRoxana, SWT.NONE);
-		lblProdotti.setForeground(SWTResourceManager.getColor(127, 255, 0));
+		lblProdotti.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		lblProdotti.setAlignment(SWT.CENTER);
 		lblProdotti.setBounds(10, 10, 172, 15);
-		lblProdotti.setText("Prodotti");
+		lblProdotti.setText("Negozio");
 		
 		spesaLista = new List(shlNegozioDiRoxana, SWT.BORDER);
 		spesaLista.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
-		spesaLista.setBounds(188, 31, 172, 244);
+		spesaLista.setBounds(188, 31, 172, 267);
 		
 		Label lblSpesa = new Label(shlNegozioDiRoxana, SWT.NONE);
 		lblSpesa.setForeground(SWTResourceManager.getColor(173, 255, 47));
@@ -112,9 +121,11 @@ public class Main {
 		lblSpesa.setBounds(188, 10, 172, 15);
 		
 		txtNomeprodotto = new Text(shlNegozioDiRoxana, SWT.BORDER);
+		txtNomeprodotto.setTouchEnabled(true);
+		txtNomeprodotto.setText("NomeProdotto");
+		txtNomeprodotto.setToolTipText("NomeProdotto");
 		txtNomeprodotto.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD | SWT.ITALIC));
 		txtNomeprodotto.setBackground(SWTResourceManager.getColor(152, 251, 152));
-		txtNomeprodotto.setText("NomeProdotto");
 		txtNomeprodotto.setBounds(417, 32, 108, 21);
 		
 		txtPrezzo = new Text(shlNegozioDiRoxana, SWT.BORDER);
@@ -217,7 +228,7 @@ public class Main {
 		btnEliminadaspesa.setText("Elimina");
 		
 		btnTesseraFedelta = new Button(shlNegozioDiRoxana, SWT.CHECK);
-		btnTesseraFedelta.setBounds(188, 282, 172, 16);
+		btnTesseraFedelta.setBounds(188, 335, 172, 25);
 		btnTesseraFedelta.setText("Tessera fedelta");
 		
 		calcPrezzo = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -233,7 +244,7 @@ public class Main {
 				Functions.Info(elenco);
 			}
 		});
-		calcPrezzo.setBounds(188, 335, 172, 25);
+		calcPrezzo.setBounds(188, 365, 172, 25);
 		calcPrezzo.setText("Calcola prezzo\r\n");
 		
 		Label lblCreaProdotto = new Label(shlNegozioDiRoxana, SWT.NONE);
@@ -243,19 +254,23 @@ public class Main {
 		lblCreaProdotto.setBounds(417, 10, 108, 15);
 		lblCreaProdotto.setText("Crea prodotto");
 		
+		Button btnSovrascrivi = new Button(shlNegozioDiRoxana, SWT.CHECK);
+		btnSovrascrivi.setBounds(10, 395, 172, 24);
+		btnSovrascrivi.setText("Sovrascrivi");
+		
 		Button btnSalvaprodotti = new Button(shlNegozioDiRoxana, SWT.NONE);
 		btnSalvaprodotti.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					Functions.Salva(negozio, "Negozio.txt");
+					Functions.Salva(negozio, "Negozio.txt", btnSovrascrivi.getSelection());
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnSalvaprodotti.setBounds(10, 366, 172, 25);
+		btnSalvaprodotti.setBounds(10, 425, 172, 25);
 		btnSalvaprodotti.setText("SalvaProdotti");
 		
 		btnCaricaprodotti = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -271,7 +286,7 @@ public class Main {
 				aggiornaNegozio();
 			}
 		});
-		btnCaricaprodotti.setBounds(10, 397, 172, 25);
+		btnCaricaprodotti.setBounds(10, 456, 172, 25);
 		btnCaricaprodotti.setText("CaricaProdotti");
 		
 		Button btnI = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -298,14 +313,14 @@ public class Main {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					Functions.Salva(negozio, "Spesa.txt");
+					Functions.Salva(negozio, "Spesa.txt", button_1.getSelection());
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnSalvaspessa.setBounds(188, 366, 172, 25);
+		btnSalvaspessa.setBounds(188, 425, 172, 25);
 		btnSalvaspessa.setText("SalvaSpesa");
 		
 		Button btnCaricaspesa = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -321,7 +336,7 @@ public class Main {
 				aggiornaSpesa();
 			}
 		});
-		btnCaricaspesa.setBounds(188, 397, 172, 25);
+		btnCaricaspesa.setBounds(188, 456, 172, 25);
 		btnCaricaspesa.setText("CaricaSpesa");
 		
 		Button btnApriFile = new Button(shlNegozioDiRoxana, SWT.NONE);
@@ -348,6 +363,32 @@ public class Main {
 		txtByRoxy.setBackground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
 		txtByRoxy.setText("By Roxy & Demian");
 		txtByRoxy.setBounds(391, 278, 134, 21);
+		
+		Button btnCancellaTutti = new Button(shlNegozioDiRoxana, SWT.NONE);
+		btnCancellaTutti.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				negozio.eliminaTuttiProdotti();
+				aggiornaNegozio();
+			}
+		});
+		btnCancellaTutti.setBounds(10, 487, 172, 25);
+		btnCancellaTutti.setText("Cancella tutti");
+		
+		Button button = new Button(shlNegozioDiRoxana, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				spesa.eliminaTuttiProdotti();
+				aggiornaSpesa();
+			}
+		});
+		button.setText("Cancella tutti");
+		button.setBounds(188, 487, 172, 25);
+		
+		button_1 = new Button(shlNegozioDiRoxana, SWT.CHECK);
+		button_1.setText("Sovrascrivi");
+		button_1.setBounds(188, 396, 172, 24);
 	}
 	
 	void aggiornaSpesa(){

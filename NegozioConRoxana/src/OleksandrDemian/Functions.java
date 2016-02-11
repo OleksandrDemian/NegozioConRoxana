@@ -21,8 +21,8 @@ import it.roxanarotaru.prodotti.Prodotto;
 
 public class Functions {
 	
-	public static void Salva(ListaSpesa ls, String nomeFile) throws FileNotFoundException{
-		FileOutputStream salva = new FileOutputStream(nomeFile, true);
+	public static void Salva(ListaSpesa ls, String nomeFile, boolean sovrascrivi) throws FileNotFoundException{
+		FileOutputStream salva = new FileOutputStream(nomeFile, !sovrascrivi);
 		PrintStream ps = new PrintStream(salva);
 		for(int i=0; i<ls.Lunghezza();i++){
 			
